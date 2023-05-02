@@ -1,6 +1,6 @@
 (function () {
   function createAppTitle(title) {
-    let appTitle = document.createElement("h2");
+    let appTitle = document.createElement("h3");
     appTitle.innerHTML = title;
     return title;
   }
@@ -66,10 +66,8 @@
     };
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    let container = document.getElementById("todo-app");
-
-    let todoAppTitle = createAppTitle("Список дел");
+  function createTodoApp(container, title = "Список дел") {
+    let todoAppTitle = createAppTitle(title);
     let todoItemForm = createToDoItemForm();
     let todoList = createToDOList();
     let todoItems = [
@@ -102,5 +100,11 @@
       todoList.append(todoItem.item);
       todoItemForm.input.value = "";
     });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    createTodoApp(document.getElementById("my-todos"), "Мои дела");
+    createTodoApp(document.getElementById("mom-todos"), "Мамины дела");
+    createTodoApp(document.getElementById("dad-todos"), "Папины дела");
   });
 })();
